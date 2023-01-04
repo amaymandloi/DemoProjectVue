@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/HomeView',
+    path: '/',
     name: 'HomeView',
     component: HomeView
   },
@@ -34,6 +34,11 @@ const routes = [
    name : 'User',
    component : () => import('../views/User.vue')
 },
+{
+  path : '/Table',
+  name : 'Table',
+  component : () => import('../views/Table.vue')
+}
 
 ]
 

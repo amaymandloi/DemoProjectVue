@@ -51,11 +51,11 @@
         </div>
         <v-form>
           <div class="right-content">
-            <label for="Welcome" class="heading">Welcome</label>
             <v-form id="form" @submit.prevent="fromValidation">
+            <label for="Welcome" class="heading">Welcome</label>
               <div class="form-control">
-                <v-text-field type="text" id="email" placeholder="Email" v-model="email" />
-                <span v-if="errorEmail" class="error">{{ errorEmail }}</span>
+                <v-text-field type="email" v-model="email" id="email" placeholder="Email" />
+                <span v-if="errorEmail" class="error">{{errorEmail}}</span>
               </div>
                <div class="form-control">
                 <v-text-field v-model="password" type="password" id="password" placeholder="Password"/>
@@ -100,11 +100,14 @@ export default {
   methods: {
     fromValidation() {
       const userDetail = JSON.parse(localStorage.getItem(this.email));
-
+      console.log("UserDetail===>", userDetail)
       if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(this.email)) {
         this.errorEmail = "use @ and .com";
         return;
-      } else if (this.email !== userDetail.email) {
+      } else if(!userDetail){
+        this.errorEmail = "User doesn't exist!";
+        return;
+      }else if (this.email!==userDetail.email) {
         this.errorEmail = "Email does not match";
         return;
       } else {

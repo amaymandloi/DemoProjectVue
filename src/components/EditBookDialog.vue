@@ -92,7 +92,7 @@ props: [
       });
     },
     close() {
-    this.$emit('closeBook')
+    this.$emit('closeFarmer')
     },
   },
 }
